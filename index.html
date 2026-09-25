@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Portail Scolaire 2026-2027</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0f766e;
+            --primary-light: #14b8a6;
+            --primary-dark: #0f5147;
+            --accent: #d97706;
+            --bg-main: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --status-upcoming: #2563eb;
+            --status-active: #059669;
+            --status-passed: #94a3b8;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
+            --shadow-md: 0 8px 20px rgba(0,0,0,0.06);
+            --radius: 18px;
+            --sat: env(safe-area-inset-top);
+            --sab: env(safe-area-inset-bottom);
+
+            /* Couleurs des Matières */
+            --c-francais: #fee2e2; --t-francais: #991b1b; --b-francais: #fca5a5;
+            --c-arabe: #dbeafe; --t-arabe: #1e40af; --b-arabe: #93c5fd;
+            --c-maths: #f3e8ff; --t-maths: #6b21a8; --b-maths: #d8b4fe;
+            --c-anglais: #fef3c7; --t-anglais: #92400e; --b-anglais: #fde047;
+            --c-eveil: #dcfce7; --t-eveil: #166534; --b-eveil: #86efac;
+            --c-eps: #ffedd5; --t-eps: #9a3412; --b-eps: #fdba74;
+            --c-arts: #fce7f3; --t-arts: #9d174d; --b-arts: #fbcfe8;
+            --c-info: #e0e7ff; --t-info: #3730a3; --b-info: #a5b4fc;
+            --c-recreation: #f1f5f9; --t-recreation: #475569;
+        }
+
+        .dark {
+            --bg-main: #090d16;
+            --card-bg: #151c2c;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border: #26334d;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.2);
+            --shadow-md: 0 8px 24px rgba(0,0,0,0.3);
+
+            --c-francais: #451a1a; --t-francais: #fca5a5; --b-francais: #7f1d1d;
+            --c-arabe: #1e293b; --t-arabe: #93c5fd; --b-arabe: #1e3a8a;
+            --c-maths: #3b0764; --t-maths: #e9d5ff; --b-maths: #581c87;
+            --c-anglais: #451a03; --t-anglais: #fde047; --b-anglais: #78350f;
+            --c-eveil: #052e16; --t-eveil: #86efac; --b-eveil: #14532d;
+            --c-eps: #431407; --t-eps: #ffedd5; --b-eps: #7c2d12;
+            --c-arts: #500724; --t-arts: #fbcfe8; --b-arts: #831843;
+            --c-info: #1e1b4b; --t-info: #c7d2fe; --b-info: #312e81;
+            --c-recreation: #1e293b; --t-recreation: #cbd5e1;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', 'Tajawal', -apple-system, BlinkMacSystemFont, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding-bottom: calc(20px + var(--sab));
+            transition: background-color 0.25s, color 0.25s;
+            overflow-x: hidden;
+        }
+
+        /* En-tête Principal Nav */
+        header {
+            background: linear-gradient(135deg, #064e3b 0%, #0f766e 50%, #0284c7 100%);
+            color: white;
+            padding: calc(10px + var(--sat)) 16px 12px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+        }
+
+        .nav-container {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 800;
+            font-size: 1rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .btn-icon {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.82rem;
+            font-weight: 700;
+            backdrop-filter: blur(4px);
+            flex-shrink: 0;
+        }
+
+        /* Menu Hub Accueil */
+        #hubContainer {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 0 16px;
+            width: 100%;
+        }
+
+        .hub-title {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .hub-title h1 {
+            font-size: 1.4rem;
+            color: var(--primary-dark);
+            margin-bottom: 6px;
+        }
+
+        .hub-title p {
+            color: var(--text-muted);
+            font-size: 0.88rem;
+        }
+
+        .hub-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 14px;
+        }
+
+        .hub-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            padding: 18px;
+            box-shadow: var(--shadow-sm);
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .hub-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--primary);
+            box-shadow: var(--shadow-md);
+        }
+
+        .hub-icon {
+            font-size: 2rem;
+            background: var(--bg-main);
+            width: 54px;
+            height: 54px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .hub-info h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 3px;
+        }
+
+        .hub-info p {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            line-height: 1.3;
+        }
+
+        /* Modules */
+        .module {
+            display: none;
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            flex: 1;
+        }
+
+        .module.active {
+            display: block;
+        }
+
+        /* Barre d'onglets de filtres */
+        .class-bar {
+            background: var(--card-bg);
+            border-bottom: 1px solid var(--border);
+            padding: 8px 12px;
+            position: sticky;
+            top: 48px;
+            z-index: 90;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .class-container {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            gap: 6px;
+            overflow-x: auto;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .class-btn {
+            flex: 0 0 auto;
+            background: var(--bg-main);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            padding: 7px 14px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.82rem;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .class-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .days-bar {
+            max-width: 900px;
+            margin: 10px auto;
+            padding: 0 16px;
+            width: 100%;
+        }
+
+        .days-container {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 4px;
+        }
+
+        .day-tab {
+            background: var(--card-bg);
+            border: 1.5px solid var(--border);
+            color: var(--text-muted);
+            padding: 8px 16px;
+            border-radius: 14px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            cursor: pointer;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .day-tab.active {
+            background: var(--text-main);
+            color: var(--card-bg);
+            border-color: var(--text-main);
+        }
+
+        /* Éléments des Emplois du Temps */
+        .content-box {
+            padding: 12px 16px;
+        }
+
+        .slot-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            padding: 12px 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 10px;
+        }
+
+        .slot-time {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            min-width: 90px;
+        }
+
+        .slot-time .time-range {
+            font-size: 0.85rem;
+            font-weight: 800;
+            color: var(--text-main);
+        }
+
+        .slot-time .duration {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .slot-subject {
+            flex: 1;
+            margin-left: 12px;
+            padding: 8px 12px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: 1px solid transparent;
+        }
+
+        /* Classes Matières */
+        .sub-francais { background: var(--c-francais); color: var(--t-francais); border-color: var(--b-francais); }
+        .sub-arabe { background: var(--c-arabe); color: var(--t-arabe); border-color: var(--b-arabe); }
+        .sub-maths { background: var(--c-maths); color: var(--t-maths); border-color: var(--b-maths); }
+        .sub-anglais { background: var(--c-anglais); color: var(--t-anglais); border-color: var(--b-anglais); }
+        .sub-eveil { background: var(--c-eveil); color: var(--t-eveil); border-color: var(--b-eveil); }
+        .sub-eps { background: var(--c-eps); color: var(--t-eps); border-color: var(--b-eps); }
+        .sub-arts { background: var(--c-arts); color: var(--t-arts); border-color: var(--b-arts); }
+        .sub-info { background: var(--c-info); color: var(--t-info); border-color: var(--b-info); }
+        .sub-recreation { 
+            background: var(--c-recreation); 
+            color: var(--t-recreation); 
+            font-size: 0.8rem; 
+            font-weight: 600; 
+            justify-content: center;
+            border: 1px dashed var(--border);
+        }
+
+        /* EN-TÊTE VACANCES ET RECHERCHE */
+        .hero-vacances {
+            max-width: 800px;
+            margin: 10px auto 0;
+            padding: 0 16px;
+            width: 100%;
+        }
+
+        .search-box {
+            position: relative;
+            margin-bottom: 10px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 10px 14px 10px 38px;
+            border-radius: 12px;
+            border: 1.5px solid var(--border);
+            background: var(--card-bg);
+            color: var(--text-main);
+            font-size: 0.88rem;
+            font-weight: 600;
+            outline: none;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .search-input::placeholder {
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            padding: 8px 4px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .stat-icon {
+            font-size: 1.1rem;
+        }
+
+        .stat-info h4 {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.2px;
+            font-weight: 700;
+        }
+
+        .stat-info .num {
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1.1;
+        }
+
+        /* LISTE DES VACANCES (CARTES) */
+        .vacations-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .vacation-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .vacation-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+        }
+
+        .vacation-card.upcoming::before { background: var(--status-upcoming); }
+        .vacation-card.active::before { background: var(--status-active); }
+        .vacation-card.passed::before { background: var(--status-passed); }
+
+        .card-header {
+            padding: 10px 14px 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .badge-status {
+            font-size: 0.7rem;
+            font-weight: 800;
+            padding: 3px 8px;
+            border-radius: 20px;
+        }
+
+        .status-upcoming { background: rgba(37, 99, 235, 0.12); color: var(--status-upcoming); }
+        .status-active { background: rgba(5, 150, 105, 0.12); color: var(--status-active); }
+        .status-passed { background: rgba(148, 163, 184, 0.15); color: var(--status-passed); }
+
+        .days-tag {
+            background: rgba(217, 119, 6, 0.12);
+            color: var(--accent);
+            font-size: 0.72rem;
+            font-weight: 800;
+            padding: 3px 8px;
+            border-radius: 8px;
+            white-space: nowrap;
+        }
+
+        .card-title {
+            padding: 4px 14px 6px;
+        }
+
+        .card-title h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            line-height: 1.3;
+            color: var(--text-main);
+        }
+
+        .card-title p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            direction: rtl;
+            font-weight: 700;
+            margin-top: 2px;
+        }
+
+        .card-body {
+            padding: 0 14px 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .date-row {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            background: var(--bg-main);
+            padding: 6px 10px;
+            border-radius: 8px;
+            font-weight: 500;
+        }
+
+        .countdown-box {
+            background: var(--bg-main);
+            border-radius: 10px;
+            padding: 8px;
+            text-align: center;
+            border: 1px dashed var(--border);
+        }
+
+        .countdown-label {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .countdown-value {
+            font-size: 0.95rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        /* TABLEAU RÉCAPITULATIF (DANS LA PAGE VACANCES) */
+        .vacation-table-wrapper {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+            padding: 14px;
+            margin-top: 20px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .vacation-table-title {
+            font-size: 1rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            color: var(--primary-dark);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .vacations-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.82rem;
+            text-align: left;
+            min-width: 460px;
+        }
+
+        .vacations-table th {
+            background: var(--bg-main);
+            color: var(--text-muted);
+            font-weight: 700;
+            padding: 8px;
+            border-bottom: 2px solid var(--border);
+            white-space: nowrap;
+        }
+
+        .vacations-table td {
+            padding: 8px;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-main);
+            vertical-align: middle;
+        }
+
+        .vacations-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        @media (min-width: 640px) {
+            .vacations-grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- EN-TÊTE PRINCIPAL -->
+    <header>
+        <div class="nav-container">
+            <div class="logo" id="headerTitle">Portail Scolaire 2026-2027</div>
+            <button class="btn-icon" id="homeBtn" onclick="showHub()" style="display: none;">🏠 Accueil</button>
+        </div>
+    </header>
+
+    <!-- MENU PRINCIPAL (HUB) -->
+    <div id="hubContainer">
+        <div class="hub-title">
+            <h1>Bienvenue sur votre Portail</h1>
+            <p>Veuillez choisir un service ci-dessous :</p>
+        </div>
+
+        <div class="hub-grid">
+            <div class="hub-card" onclick="openModule('app4AP')">
+                <div class="hub-icon">🏫</div>
+                <div class="hub-info">
+                    <h3>Emploi du Temps 4AP</h3>
+                    <p>Classes 4AP A, B, C et D avec détails et durées</p>
+                </div>
+            </div>
+
+            <div class="hub-card" onclick="openModule('appVacances')">
+                <div class="hub-icon">🌴</div>
+                <div class="hub-info">
+                    <h3>Vacances Scolaires Maroc</h3>
+                    <p>Calendrier dynamique, filtres et tableau récapitulatif</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODULE 1 : 4AP (GROUPES : A, B, C, D) -->
+    <div id="app4AP" class="module">
+        <div class="class-bar">
+            <div class="class-container">
+                <button class="class-btn active" onclick="m4apSetClass('4AP A', this)">4AP A</button>
+                <button class="class-btn" onclick="m4apSetClass('4AP B', this)">4AP B</button>
+                <button class="class-btn" onclick="m4apSetClass('4AP C', this)">4AP C</button>
+                <button class="class-btn" onclick="m4apSetClass('4AP D', this)">4AP D</button>
+            </div>
+        </div>
+        <div class="days-bar">
+            <div class="days-container">
+                <button class="day-tab active" onclick="m4apSetDay('LUNDI', this)">LUNDI</button>
+                <button class="day-tab" onclick="m4apSetDay('MARDI', this)">MARDI</button>
+                <button class="day-tab" onclick="m4apSetDay('MERCREDI', this)">MERCREDI</button>
+                <button class="day-tab" onclick="m4apSetDay('JEUDI', this)">JEUDI</button>
+                <button class="day-tab" onclick="m4apSetDay('VENDREDI', this)">VENDREDI</button>
+            </div>
+        </div>
+        <div class="content-box" id="m4apContent"></div>
+    </div>
+
+    <!-- MODULE 2 : VACANCES (CARTES, FILTRES ET TABLEAU DANS LA MÊME PAGE) -->
+    <div id="appVacances" class="module">
+        <div class="class-bar">
+            <div class="class-container">
+                <button class="class-btn active" onclick="filterVacations('all', this)">Toutes les vacances</button>
+                <button class="class-btn" onclick="filterVacations('upcoming', this)">À venir ⏳</button>
+                <button class="class-btn" onclick="filterVacations('active', this)">En cours 🎉</button>
+                <button class="class-btn" onclick="filterVacations('passed', this)">Terminées ✅</button>
+            </div>
+        </div>
+
+        <div class="hero-vacances">
+            <div class="search-box">
+                <span class="search-icon">🔍</span>
+                <input type="search" id="searchInput" class="search-input" placeholder="Rechercher (ex: Fête, البينية)..." oninput="handleSearch()">
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">📅</div>
+                    <div class="stat-info">
+                        <h4>Total</h4>
+                        <div class="num" id="statTotal">15</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">⏳</div>
+                    <div class="stat-info">
+                        <h4>À venir</h4>
+                        <div class="num" id="statUpcoming">0</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🏝️</div>
+                    <div class="stat-info">
+                        <h4>Jours</h4>
+                        <div class="num" id="statDays">54</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-box">
+            <!-- Cartes des vacances -->
+            <div class="vacations-grid" id="vacationsContainer">
+                <!-- Généré dynamiquement -->
+            </div>
+
+            <!-- Tableau récapitulatif intégré en bas -->
+            <div class="vacation-table-wrapper">
+                <div class="vacation-table-title">📋 Tableau récapitulatif (ordre chronologique)</div>
+                <table class="vacations-table">
+                    <thead>
+                        <tr>
+                            <th>N°</th>
+                            <th>Vacances (FR / AR)</th>
+                            <th>Période</th>
+                            <th>Durée</th>
+                        </tr>
+                    </thead>
+                    <tbody id="vacationsTableBody">
+                        <!-- Généré dynamiquement -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // NAVIGATION HUB ET MODULES
+        function showHub() {
+            document.getElementById('hubContainer').style.display = 'block';
+            document.querySelectorAll('.module').forEach(m => m.classList.remove('active'));
+            document.getElementById('homeBtn').style.display = 'none';
+            document.getElementById('headerTitle').innerText = "Portail Scolaire 2026-2027";
+        }
+
+        function openModule(moduleId) {
+            document.getElementById('hubContainer').style.display = 'none';
+            document.querySelectorAll('.module').forEach(m => m.classList.remove('active'));
+            document.getElementById(moduleId).classList.add('active');
+            document.getElementById('homeBtn').style.display = 'flex';
+
+            const titles = {
+                'app4AP': 'Emploi du Temps 4AP',
+                'appVacances': 'Vacances Scolaires'
+            };
+            document.getElementById('headerTitle').innerText = titles[moduleId];
+            window.scrollTo(0, 0);
+        }
+
+        /* -------------------------------------------------------------
+           MODULE 4AP
+        ------------------------------------------------------------- */
+        const m4apData = {
+            "4AP A": {
+                "LUNDI": [
+                    { time: "08h30 - 09h20", duration: "50 min", subject: "Arabe" },
+                    { time: "09h20 - 10h10", duration: "50 min", subject: "Arabe" },
+                    { type: "recreation", name: "Récréation du matin (10h10 - 10h20)" },
+                    { time: "10h20 - 11h10", duration: "50 min", subject: "EPS" },
+                    { time: "11h10 - 12h00", duration: "50 min", subject: "Arabe" },
+                    { time: "14h15 - 15h05", duration: "50 min", subject: "Français" },
+                    { time: "15h05 - 15h55", duration: "50 min", subject: "Mathématiques" },
+                    { type: "recreation", name: "Récréation de l'après-midi (15h55 - 16h05)" },
+                    { time: "16h05 - 16h55", duration: "50 min", subject: "Français" },
+                    { time: "16h55 - 17h45", duration: "50 min", subject: "Français" }
+                ],
+                "MARDI": [
+                    { time: "08h30 - 09h20", duration: "50 min", subject: "Mathématiques" },
+                    { time: "09h20 - 10h10", duration: "50 min", subject: "Français" },
+                    { type: "recreation", name: "Récréation du matin (10h10 - 10h20)" },
+                    { time: "10h20 - 11h10", duration: "50 min", subject: "Français" },
+                    { time: "11h10 - 12h00", duration: "50 min", subject: "Français" },
+                    { time: "14h15 - 15h05", duration: "50 min", subject: "Arabe" },
+                    { time: "15h05 - 15h55", duration: "50 min", subject: "Arabe" },
+                    { type: "recreation", name: "Récréation de l'après-midi (15h55 - 16h05)" },
+                    { time: "16h05 - 16h55", duration: "50 min", subject: "Anglais" },
+                    { time: "16h55 - 17h45", duration: "50 min", subject: "Éveil scientifique" }
+                ],
+                "MERCREDI": [
+                    { time: "08h30 - 09h20", duration: "50 min", subject: "Arabe" },
+                    { time: "09h20 - 10h10", duration: "50 min", subject: "Anglais" },
+                    { type: "recreation", name: "Récréation du matin (10h10 - 10h20)" },
+                    { time: "10h20 - 11h10", duration: "50 min", subject: "Français" },
+                    { time: "11h10 - 12h00", duration: "50 min", subject: "Mathématiques" }
+                ],
+                "JEUDI": [
+                    { time: "08h30 - 09h20", duration: "50 min", subject: "Arabe" },
+                    { time: "09h20 - 10h10", duration: "50 min", subject: "Arts / Musique" },
+                    { type: "recreation", name: "Récréation du matin (10h10 - 10h20)" },
+                    { time: "10h20 - 11h10", duration: "50 min", subject: "Anglais" },
+                    { time: "11h10 - 12h00", duration: "50 min", subject: "Arabe" },
+                    { time: "14h15 - 15h05", duration: "50 min", subject: "Mathématiques" },
+                    { time: "15h05 - 15h55", duration: "50 min", subject: "Info" },
+                    { type: "recreation", name: "Récréation de l'après-midi (15h55 - 16h05)" },
+                    { time: "16h05 - 16h55", duration: "50 min", subject: "Français" },
+                    { time: "16h55 - 17h45", duration: "50 min", subject: "Français" }
+                ],
+                "VENDREDI": [
+                    { time: "08h15 - 09h05", duration: "50 min", subject: "Français" },
+                    { time: "09h05 - 09h55", duration: "50 min", subject: "Français" },
+                    { type: "recreation", name: "Récréation du matin (09h55 - 10h05)" },
+                    { time: "10h05 - 10h55", duration: "50 min", subject: "Mathématiques" },
+                    { time: "10h55 - 11h45", duration: "50 min", subject: "Mathématiques" },
+                    { time: "14h15 - 15h05", duration: "50 min", subject: "Arabe" },
+                    { time: "15h05 - 15h55", duration: "50 min", subject: "Éveil scientifique" },
+                    { type: "recreation", name: "Récréation de l'après-midi (15h55 - 16h05)" },
+                    { time: "16h05 - 16h55", duration: "50 min", subject: "Arabe" },
+                    { time: "16h55 - 17h45", duration: "50 min", subject: "Arabe" }
+                ]
+            },
+            "4AP B": {
+                "LUNDI": [
+                    { time: "08h30 - 09h20", duration: "50 min", subject: "Français" },
+                    { time: "09h20 - 10h10", duration: "50 min", subject: "Mathématiques" },
+                    { type: "recreation", name: "Récréation du matin (10h10 - 10h20)" },
+                    { time: "10h20 - 11h10", duration: "50 min", subject: "Français" },
+                    { time: "11h10 - 12h00", duration: "50 min", subject: "Français" },
+                    { time: "14h15 - 15h05", duration: "50 min", subject: "Arts / Musique" },
+                    { time: "15h05 - 15h55", duration: "50 min", subject: "Arabe" },
+                    { type: "recreation", name: "Récréation de l'après-midi (15h55 - 16h05)" },
+                    { time: "16h05 - 16h55", duration: "50 min", subject: "Mathématiques" },
+                    { time: "16h55 - 17h45", duration: "50 min", subject: "Arabe" }
+                ],
+                "MARDI": [
+                    { time: "08h30 - 09h20", duration: "50 min", subject: "Arabe" },
+                    { time: "09h20 - 10h10", duration: "50 min", subject: "Arabe" },
+                    { type: "recreation", name: "Récréation du matin (10h10 - 10h20)" },
+                    { time: "10h20 - 11h10", duration: "50 min", subject: "Anglais" },
+                    { time: "11h10 - 12h00", duration: "50 min", subject: "Arabe" },
+                    { time: "14h15 - 15h05", duration: "50 min", subject: "Français" },
+                    { time: "15h05 - 15h55", duration: "50 min", subject: "Français" },
+                    { type: "recreation", name: "Récréation de l'après-midi (15h55 - 16h05)" },
+                    { time: "16h05 - 16h55", duration: "50 min", subject: "Mathématiques" },
+                    { time: "16h55 - 17h45", duration: "50 min", subject: "Français" }
+                ],
+                "MERCREDI": [
+                    { time: "08h30 - 09h20", duration: "50 min", subject: "Français" },
+                    { time: "09h20 - 10h10", duration: "50 min", subject: "Mathématiques" },
+                    { type: "recreation", name: "Récréation du matin (10h10 - 10h20)" },
+                    { time: "10h20 - 11h10", duration: "50 min", subject: "Éveil scientifique" },
+                    { time: "11h10 - 12h00", duration: "50 min", subject: "Arabe" }
+                ],
+                "JEUDI": [
+                    { time: "08h30 - 09h20", duration: "50 min", subject: "EPS" },
+                    { time: "09h20 - 10h10", duration: "50 min", subject: "Mathématiques" },
+                    { type: "recreation", name: "Récréation du matin (10h10 - 10h20)" },
+                    { time: "10h20 - 11h10", duration: "50 min", subject: "Français" },
+                    { time: "11h10 - 12h00", duration: "50 min", subject: "Anglais" },
+                    { time: "14h15 - 15h05", duration: "50 min", subject: "Arabe" },
+                    { time: "15h05 - 15h55", duration: "50 min", subject: "Arabe" },
+                    { type: "recreation", name: "Récréation de l'après-midi (15h55 - 16h05)" },
+                    { time: "16h05 - 16h55", duration: "50 min", subject: "Info" },
+                    { time: "16h55 - 17h45", duration: "50 min", subject: "Arabe" }
+                ],
+                "VENDREDI": [
+                    { time: "08h15 - 09h05", duration: "50 min", subject: "Anglais" },
+                    { time: "09h05 - 09h55", duration: "50 min", subject: "Éveil scientifique" },
+                    { type: "recreation", name: "Récréation du matin (09h55 - 10h05)" },
+                    { time: "10h05 - 10h55", duration: "50 min", subject: "Arabe" },
+                    { time: "10h55 - 11h45", duration: "50 min", subject: "Arabe" },
+                    { time: "14h15 - 15h05", duration: "50 min", subject: "Français" },
+                    { time: "15h05 - 15h55", duration: "50 min", subject: "Français" },
+                    { type: "recreation", name: "Récréation de l'après-midi (15h55 - 16h05)" },
+                    { time: "16h05 - 16h55", duration: "50 min", subject: "Mathématiques" },
+                    { time: "16h55 - 17h45", duration: "50 min", subject: "Français" }
+                ]
+            },
+            "4AP C": {
+                "LUNDI": [
+                    { time: "08h30 - 09h20", duration: "50 min", subject: "Arabe" },
+                    { time: "09h20 - 10h10", duration: "50 min", subject: "Arabe" },
+                    { type: "recreation", name: "Récréation du matin (10h10 - 10h20)" },
+                    { time: "10h20 - 11h10", duration: "50 min", subject: "Arabe" },
+                    { time: "11h10 - 12h00", duration: "50 min", subject: "Anglais" },
+                    { time: "14h15 - 15h05", duration: "50 min", subject: "Mathématiques" },
+                    { time: "15h05 - 15h55", duration: "50 min", subject: "Français" },
+                    { type: "recreation", name: "Récréation de l'après-midi (15h55 - 16h05)" },
+                    { time: "16h05 - 16h55", duration: "50 min", subject: "Français" },
+                    { time: "16h55 - 17h45", duration: "50 min", subject: "Français" }
+                ],
+                "MARDI": [
+                    { time: "08h30 - 09h20", duration: "50 min", subject: "Français" },
+                    { time: "09h20 - 10h10", duration: "50 min", subject: "Français" },
+                    { type: "recreation", name: "Récréation du matin (10h10 - 10h20)" },
+                    { time: "10h20 - 11h10", duration: "50 min", subject: "Mathématiques" },
+                    { time: "11h10 - 12h00", duration: "50 min", subject: "Mathématiques" },
+                    { time: "14h15 - 15h05", duration: "50 min", subject: "Arabe" },
+                    { time: "15h05 - 15h55", duration: "50 min", subject: "Arabe" },
+                    { type: "recreation", name: "Récréation de l'après-midi (15h55 - 16h05)" },
+                    { time: "16h05 - 16h55", duration: "50 min", subject: "Éveil scientifique" },
+                    { time: "16h55 - 17h45", duration: "50 min", subject: "EPS" }
+                ],
+                "MERCREDI": [
+                    { time: "08h30 - 09h20", duration: "50 min", subject: "Arabe" },
+                    { time: "09h20 - 10h10", duration: "50 min", subject: "Arts / Musique" },
+                    { type: "recreation", name: "Récréation du matin (10h10 - 10h20)" },
+                    { time: "10h20 - 11h10", duration: "50 min", subject: "Mathématiques" },
+                    { time: "11h10 - 12h00", duration: "50 min", subject: "Français" }
+                ],
+                "JEUDI": [
+                    { time: "08h30 - 09h20", duration: "50 min", subject: "Arabe" },
+                    { time: "09h20 - 10h10", duration: "50 min", subject: "Anglais" },
+                    { type: "recreation", name: "Récréation du matin (10h10 - 10h20)" },
+                    { time: "10h20 - 11h10", duration: "50 min", subject: "Arabe" },
+                    { time: "11h10 - 12h00", duration: "50 min", subject: "Arabe" },
+                    { time: "14h15 - 15h05", duration: "50 min", subject: "Info" },
+                    { time: "15h05 - 15h55", duration: "50 min", subject: "Mathématiques" },
+                    { type: "recreation", name: "Récréation de l'après-midi (15h55 - 16h05)" },
+                    { time: "16h05 - 16h55", duration: "50 min", subject: "Français" },
+                    { time: "16h55 - 17h45", duration: "50 min", subject: "Français" }
+                ],
+                "VENDREDI": [
+                    { time: "08h15 - 09h05", duration: "50 min", subject: "Français" },
+                    { time: "09h05 - 09h55", duration: "50 min", subject: "Mathématiques" },
+                    { type: "recreation", name: "Récréation du matin (09h55 - 10h05)" },
+                    { time: "10h05 - 10h55", duration: "50 min", subject: "Français" },
+                    { time: "10h55 - 11h45", duration: "50 min", subject: "Français" },
+                    { time: "14h15 - 15h05", duration: "50 min", subject: "Éveil scientifique" },
+                    { time: "15h05 - 15h55", duration: "50 min", subject: "Anglais" },
+                    { type: "recreation", name: "Récréation de l'après-midi (15h55 - 16h05)" },
+                    { time: "16h05 - 16h55", duration: "50 min", subject: "Arabe" },
+                    { time: "16h55 - 17h45", duration: "50 min", subject: "Arabe" }
+                ]
+            },
+            "4AP D": {
+                "LUNDI": [
+                    { time: "08h30 - 09h20", duration: "50 min", subject: "Français" },
+                    { time: "09h20 - 10h10", duration: "50 min", subject: "Français" },
+                    { type: "recreation", name: "Récréation du matin (10h10 - 10h20)" },
+                    { time: "10h20 - 11h10", duration: "50 min", subject: "Mathématiques" },
+                    { time: "11h10 - 12h00", duration: "50 min", subject: "Français" },
+                    { time: "14h15 - 15h05", duration: "50 min", subject: "Arabe" },
+                    { time: "15h05 - 15h55", duration: "50 min", subject: "Anglais" },
+                    { type: "recreation", name: "Récréation de l'après-midi (15h55 - 16h05)" },
+                    { time: "16h05 - 16h55", duration: "50 min", subject: "Arabe" },
+                    { time: "16h55 - 17h45", duration: "50 min", subject: "Arabe" }
+                ],
+                "MARDI": [
+                    { time: "08h30 - 09h20", duration: "50 min", subject: "Arts / Musique" },
+                    { time: "09h20 - 10h10", duration: "50 min", subject: "Éveil scientifique" },
+                    { type: "recreation", name: "Récréation du matin (10h10 - 10h20)" },
+                    { time: "10h20 - 11h10", duration: "50 min", subject: "Arabe" },
+                    { time: "11h10 - 12h00", duration: "50 min", subject: "Arabe" },
+                    { time: "14h15 - 15h05", duration: "50 min", subject: "Français" },
+                    { time: "15h05 - 15h55", duration: "50 min", subject: "Français" },
+                    { type: "recreation", name: "Récréation de l'après-midi (15h55 - 16h05)" },
+                    { time: "16h05 - 16h55", duration: "50 min", subject: "Français" },
+                    { time: "16h55 - 17h45", duration: "50 min", subject: "Mathématiques" }
+                ],
+                "MERCREDI": [
+                    { time: "08h30 - 09h20", duration: "50 min", subject: "Mathématiques" },
+                    { time: "09h20 - 10h10", duration: "50 min", subject: "Français" },
+                    { type: "recreation", name: "Récréation du matin (10h10 - 10h20)" },
+                    { time: "10h20 - 11h10", duration: "50 min", subject: "Arabe" },
+                    { time: "11h10 - 12h00", duration: "50 min", subject: "Arabe" }
+                ],
+                "JEUDI": [
+                    { time: "08h30 - 09h20", duration: "50 min", subject: "Français" },
+                    { time: "09h20 - 10h10", duration: "50 min", subject: "Français" },
+                    { type: "recreation", name: "Récréation du matin (10h10 - 10h20)" },
+                    { time: "10h20 - 11h10", duration: "50 min", subject: "Info" },
+                    { time: "11h10 - 12h00", duration: "50 min", subject: "Mathématiques" },
+                    { time: "14h15 - 15h05", duration: "50 min", subject: "Arabe" },
+                    { time: "15h05 - 15h55", duration: "50 min", subject: "Arabe" },
+                    { type: "recreation", name: "Récréation de l'après-midi (15h55 - 16h05)" },
+                    { time: "16h05 - 16h55", duration: "50 min", subject: "EPS" },
+                    { time: "16h55 - 17h45", duration: "50 min", subject: "Anglais" }
+                ],
+                "VENDREDI": [
+                    { time: "08h15 - 09h05", duration: "50 min", subject: "Arabe" },
+                    { time: "09h05 - 09h55", duration: "50 min", subject: "Anglais" },
+                    { type: "recreation", name: "Récréation du matin (09h55 - 10h05)" },
+                    { time: "10h05 - 10h55", duration: "50 min", subject: "Arabe" },
+                    { time: "10h55 - 11h45", duration: "50 min", subject: "Éveil scientifique" },
+                    { time: "14h15 - 15h05", duration: "50 min", subject: "Mathématiques" },
+                    { time: "15h05 - 15h55", duration: "50 min", subject: "Mathématiques" },
+                    { type: "recreation", name: "Récréation de l'après-midi (15h55 - 16h05)" },
+                    { time: "16h05 - 16h55", duration: "50 min", subject: "Français" },
+                    { time: "16h55 - 17h45", duration: "50 min", subject: "Français" }
+                ]
+            }
+        };
+
+        let m4apClass = "4AP A";
+        let m4apDay = "LUNDI";
+
+        function m4apSetClass(cls, btn) {
+            m4apClass = cls;
+            btn.parentElement.querySelectorAll('.class-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            m4apRender();
+        }
+
+        function m4apSetDay(day, btn) {
+            m4apDay = day;
+            btn.parentElement.querySelectorAll('.day-tab').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            m4apRender();
+        }
+
+        function getSubjectClass(subject) {
+            if (!subject) return "";
+            if (subject.includes("Arabe")) return "sub-arabe";
+            if (subject.includes("Français")) return "sub-francais";
+            if (subject.includes("Math")) return "sub-maths";
+            if (subject.includes("Anglais")) return "sub-anglais";
+            if (subject.includes("Éveil")) return "sub-eveil";
+            if (subject.includes("EPS")) return "sub-eps";
+            if (subject.includes("Arts")) return "sub-arts";
+            if (subject.includes("Info")) return "sub-info";
+            return "";
+        }
+
+        function m4apRender() {
+            const container = document.getElementById('m4apContent');
+            container.innerHTML = "";
+            const list = m4apData[m4apClass][m4apDay] || [];
+
+            list.forEach(item => {
+                if (item.type === "recreation") {
+                    container.innerHTML += `<div class="slot-card sub-recreation">🔔 ${item.name}</div>`;
+                } else {
+                    container.innerHTML += `
+                        <div class="slot-card">
+                            <div class="slot-time">
+                                <span class="time-range">${item.time}</span>
+                                <span class="duration">${item.duration}</span>
+                            </div>
+                            <div class="slot-subject ${getSubjectClass(item.subject)}">
+                                <span>${item.subject}</span>
+                            </div>
+                        </div>`;
+                }
+            });
+        }
+
+        /* -------------------------------------------------------------
+           DONNÉES VACANCES
+        ------------------------------------------------------------- */
+        const vacations = [
+            { id: 1, titleFr: "1ère Période Intermédiaire", titleAr: "الفترة البينية الأولى", start: "2026-10-18", end: "2026-10-25", days: 8, desc: "Du Dim 18 Oct au Dim 25 Oct 2026" },
+            { id: 2, titleFr: "Fête de l'Unité / Oued Ed-Dahab", titleAr: "عيد الوحدة", start: "2026-10-31", end: "2026-10-31", days: 1, desc: "Samedi 31 Octobre 2026" },
+            { id: 3, titleFr: "Marche Verte", titleAr: "ذكرى المسيرة الخضراء", start: "2026-11-06", end: "2026-11-06", days: 1, desc: "Vendredi 6 Novembre 2026" },
+            { id: 4, titleFr: "Fête de l'Indépendance", titleAr: "عيد الاستقلال", start: "2026-11-18", end: "2026-11-18", days: 1, desc: "Mercredi 18 Novembre 2026" },
+            { id: 5, titleFr: "2ème Période Intermédiaire", titleAr: "الفترة البينية الثانية", start: "2026-12-06", end: "2026-12-13", days: 8, desc: "Du Dim 6 Déc au Dim 13 Déc 2026" },
+            { id: 6, titleFr: "Nouvel An", titleAr: "فاتح السنة الميلادية", start: "2027-01-01", end: "2027-01-01", days: 1, desc: "Vendredi 1er Janvier 2027" },
+            { id: 7, titleFr: "Manifeste de l'Indépendance", titleAr: "ذكرى تقديم وثيقة الاستقلال", start: "2027-01-11", end: "2027-01-11", days: 1, desc: "Lundi 11 Janvier 2027" },
+            { id: 8, titleFr: "Nouvel An Amazigh", titleAr: "فاتح السنة الأمازيغية", start: "2027-01-14", end: "2027-01-14", days: 1, desc: "Jeudi 14 Janvier 2027" },
+            { id: 9, titleFr: "Vacances de mi-année scolaire", titleAr: "عطلة منتصف السنة الدراسية", start: "2027-01-24", end: "2027-01-31", days: 8, desc: "Du Dim 24 Janv au Dim 31 Janv 2027" },
+            { id: 10, titleFr: "Aïd Al-Fitr", titleAr: "عيد الفطر", start: "2027-03-09", end: "2027-03-12", days: "3-4", desc: "Du 29 Ramadan au 2 Shawwal 1448" },
+            { id: 11, titleFr: "3ème Période Intermédiaire", titleAr: "الفترة البينية الثالثة", start: "2027-03-21", end: "2027-03-28", days: 8, desc: "Du Dim 21 Mars au Dim 28 Mars 2027" },
+            { id: 12, titleFr: "Fête du Travail", titleAr: "عيد الشغل", start: "2027-05-01", end: "2027-05-01", days: 1, desc: "Samedi 1er Mai 2027" },
+            { id: 13, titleFr: "4ème Période Intermédiaire", titleAr: "الفترة البينية الرابعة", start: "2027-05-09", end: "2027-05-16", days: 8, desc: "Du Dim 9 Mai au Dim 16 Mai 2027" },
+            { id: 14, titleFr: "Aïd Al-Adha", titleAr: "عيد الأضحى", start: "2027-05-16", end: "2027-05-18", days: 3, desc: "Du 9 au 11 Dhu al-Hijjah 1448" },
+            { id: 15, titleFr: "Fatih Muharram", titleAr: "فاتح محرم", start: "2027-06-16", end: "2027-06-16", days: 1, desc: "1er Muharram 1449" }
+        ];
+
+        let currentFilter = 'all';
+
+        function getVacationStatus(startDateStr, endDateStr) {
+            const now = new Date();
+            now.setHours(0,0,0,0);
+            
+            const start = new Date(startDateStr);
+            start.setHours(0,0,0,0);
+            
+            const end = new Date(endDateStr);
+            end.setHours(23,59,59,999);
+
+            if (now < start) {
+                const diffTime = start - now;
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                return { status: 'upcoming', label: 'À venir', msg: `Dans ${diffDays} jour(s)` };
+            } else if (now >= start && now <= end) {
+                const diffTime = end - now;
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                return { status: 'active', label: 'En cours', msg: `Reste ${diffDays} jour(s)` };
+            } else {
+                const diffTime = now - end;
+                const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+                return { status: 'passed', label: 'Terminée', msg: `Passée depuis ${diffDays} j` };
+            }
+        }
+
+        /* RENDU TABLEAU DE LA PAGE VACANCES */
+        function renderVacationsTable() {
+            const tableBody = document.getElementById('vacationsTableBody');
+            tableBody.innerHTML = '';
+
+            const sortedVacations = [...vacations].sort((a, b) => new Date(a.start) - new Date(b.start));
+
+            sortedVacations.forEach((vac, index) => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td><strong>${index + 1}</strong></td>
+                    <td>
+                        <strong>${vac.titleFr}</strong><br>
+                        <span style="color: var(--text-muted); font-size: 0.78rem; direction: rtl; display: inline-block;">${vac.titleAr}</span>
+                    </td>
+                    <td>${vac.desc}</td>
+                    <td><span class="days-tag">${vac.days} ${typeof vac.days === 'number' && vac.days > 1 ? 'Jours' : 'Jour'}</span></td>
+                `;
+                tableBody.appendChild(tr);
+            });
+        }
+
+        /* RENDU VACANCES (CARTES) */
+        function renderVacations() {
+            const container = document.getElementById('vacationsContainer');
+            const searchVal = document.getElementById('searchInput').value.toLowerCase();
+            container.innerHTML = '';
+
+            let upcomingCount = 0;
+
+            vacations.forEach(vac => {
+                const statusInfo = getVacationStatus(vac.start, vac.end);
+                
+                if (statusInfo.status === 'upcoming' || statusInfo.status === 'active') {
+                    upcomingCount++;
+                }
+
+                if (currentFilter !== 'all' && statusInfo.status !== currentFilter) {
+                    return;
+                }
+
+                if (searchVal && !vac.titleFr.toLowerCase().includes(searchVal) && !vac.titleAr.includes(searchVal) && !vac.desc.toLowerCase().includes(searchVal)) {
+                    return;
+                }
+
+                const card = document.createElement('div');
+                card.className = `vacation-card ${statusInfo.status}`;
+
+                card.innerHTML = `
+                    <div class="card-header">
+                        <span class="badge-status status-${statusInfo.status}">${statusInfo.label}</span>
+                        <span class="days-tag">${vac.days} ${typeof vac.days === 'number' && vac.days > 1 ? 'Jours' : 'Jour'}</span>
+                    </div>
+                    <div class="card-title">
+                        <h3>${vac.titleFr}</h3>
+                        <p>${vac.titleAr}</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="date-row">
+                            <span>📅 ${vac.desc}</span>
+                        </div>
+                        <div class="countdown-box">
+                            <div class="countdown-label">${statusInfo.status === 'upcoming' ? 'Compte à rebours' : statusInfo.status === 'active' ? 'Vacance en cours' : 'Temps écoulé'}</div>
+                            <div class="countdown-value">${statusInfo.msg}</div>
+                        </div>
+                    </div>
+                `;
+
+                container.appendChild(card);
+            });
+
+            document.getElementById('statUpcoming').innerText = upcomingCount;
+        }
+
+        function filterVacations(filter, btnElement) {
+            currentFilter = filter;
+            btnElement.parentElement.querySelectorAll('.class-btn').forEach(btn => btn.classList.remove('active'));
+            if (btnElement) btnElement.classList.add('active');
+            renderVacations();
+        }
+
+        function handleSearch() {
+            renderVacations();
+        }
+
+        // INITIALISATION
+        function initCurrentDay() {
+            const daysMap4AP = ["LUNDI", "LUNDI", "MARDI", "MERCREDI", "JEUDI", "VENDREDI", "LUNDI"];
+            const currentDayIndex = new Date().getDay();
+            m4apDay = daysMap4AP[currentDayIndex];
+
+            const btn4AP = Array.from(document.querySelectorAll('#app4AP .day-tab'))
+                .find(b => b.textContent.trim().toUpperCase() === m4apDay);
+            if (btn4AP) {
+                btn4AP.parentElement.querySelectorAll('.day-tab').forEach(b => b.classList.remove('active'));
+                btn4AP.classList.add('active');
+            }
+        }
+
+        initCurrentDay();
+        m4apRender();
+        renderVacationsTable();
+        renderVacations();
+    </script>
+</body>
+</html>
